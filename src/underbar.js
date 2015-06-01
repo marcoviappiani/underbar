@@ -39,7 +39,7 @@
   // last element.
   _.last = function(array, n) {
     return n === undefined ? array[array.length -1] : array.slice(-n, array.length*n);
-  };   //Marco maybe I should check this one
+  };   
 
 
   // Call iterator(value, key, collection) for each element of collection.
@@ -58,7 +58,7 @@
         iterator(collection[prop], prop, collection);
       }
     }  
-  };  //Marco solved - maybe worth double check
+  };  
 
   // Returns the index at which value can be found in the array, or -1 if value
   // is not present in the array.
