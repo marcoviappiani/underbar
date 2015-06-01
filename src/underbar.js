@@ -217,7 +217,29 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-  };
+     return _.reduce(collection, function(passedTest,item) {
+      if(passedTest) {
+        return true;
+      }
+      if(iterator){
+        if(iterator(item)) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if(item) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+     }, false);
+
+     // Marco solution 
+     // return !(_.every(collection, function(iterator) {return !(iterator)}));
+     //Not passing one test
+  }; 
 
 
   /**
@@ -239,6 +261,13 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    var result = obj;
+    _.each(arguments, function(value) {
+      for(var prop in value) {
+        result[prop] = value[prop];
+      }
+    });
+    return result;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
