@@ -238,7 +238,7 @@
 
      // Marco solution to be checked
      // return !(_.every(collection, function(iterator) {return !(iterator)}));
-     //Not passing one test
+     // Not passing one test
   }; 
 
 
@@ -325,6 +325,19 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var argumentsCalled = {};
+    var result;
+
+    var argumentsKey = _.reduce(arguments,function(string, item) {
+      return (string + item);
+    },"");
+
+    return function(argumentsKey) {
+      if (!(argumentsKey in argumentsCalled)) {
+        argumentsCalled[argumentsKey] = func.apply(this, arguments);    
+      } 
+      return argumentsCalled[argumentsKey];
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -334,6 +347,7 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    
   };
 
 
