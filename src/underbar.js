@@ -236,7 +236,7 @@
       }
      }, false);
 
-     // Marco solution 
+     // Marco solution to be checked
      // return !(_.every(collection, function(iterator) {return !(iterator)}));
      //Not passing one test
   }; 
@@ -273,6 +273,15 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    var result = obj;
+    _.each(arguments, function(value) {
+      for(var prop in value) {
+        if(!(prop in result)) {
+          result[prop] = value[prop];
+        }
+      }
+    });
+    return result;
   };
 
 
