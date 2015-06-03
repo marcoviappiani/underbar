@@ -237,6 +237,15 @@
      }, false);
 
      // Marco solution to be checked
+     // return !(_.every(collection, function(test) {
+     //  if(iterator != undefined) {
+     //    return !iterator(test);      
+     //  }
+      
+     // }));
+     // Not passing one test
+
+     // Marco other solution to be checked
      // return !(_.every(collection, function(iterator) {return !(iterator)}));
      // Not passing one test
   }; 
@@ -369,15 +378,17 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+
     var startArr = array.slice();
     var result = [];
     var elem;
     var randomIndex;
-    while(startArr.length > 0) {
-      elem = startArr.pop();
-      randomIndex = Math.floor(Math.random()*(result.length));
-      result.splice(randomIndex,0,elem);
+    while(startArr.length > 1) {
+      randomIndex = Math.random()*(startArr.length - 1) + 1;
+      elem = startArr.splice(randomIndex,1);
+      result.push(elem[0]);
     }
+    result.push(startArr[0]);
 
     return result;
   };
